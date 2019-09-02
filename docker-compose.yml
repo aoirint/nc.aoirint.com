@@ -1,0 +1,30 @@
+version: '2'
+
+volumes:
+        nextcloud:
+        db:
+
+services:
+        db:
+                image: hypriot/rpi-mysql
+                restart: always
+                volumes:
+                        - /mnt/rachel/nextcloud/db:/var/lib/mysql
+                        - /home/aoi/nextcloud/my.cnf:/etc/mysql/my.cnf
+                environment:
+                        - MYSQL_ROOT_PASSWORD=root
+                        - MYSQL_PASSWORD=nextcloud
+                        - MYSQL_DATABASE=nextcloud
+                        - MYSQL_USER=nextcloud
+        app:
+                image: nextcloud
+                ports:
+                        - 8082:80
+                links:
+                        - db
+                volumes:
+                        - /mnt/rachel/nextcloud/www:/var/www/html
+                environment:
+                        - NEXTCLOUD_TRUSTED_DOMAINS=nc.homelc0o0cl.ml
+                restart: always
+

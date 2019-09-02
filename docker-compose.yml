@@ -6,11 +6,11 @@ volumes:
 
 services:
         db:
-                image: hypriot/rpi-mysql
+                image: mysql
                 restart: always
                 volumes:
-                        - /mnt/rachel/nextcloud/db:/var/lib/mysql
-                        - /home/aoi/nextcloud/my.cnf:/etc/mysql/my.cnf
+                        - ./db:/var/lib/mysql
+                        - ./my.cnf:/etc/mysql/my.cnf
                 environment:
                         - MYSQL_ROOT_PASSWORD=root
                         - MYSQL_PASSWORD=nextcloud
@@ -23,8 +23,7 @@ services:
                 links:
                         - db
                 volumes:
-                        - /mnt/rachel/nextcloud/www:/var/www/html
+                        - ./www:/var/www/html
                 environment:
                         - NEXTCLOUD_TRUSTED_DOMAINS=nc.homelc0o0cl.ml
                 restart: always
-

@@ -3,6 +3,7 @@ server {
 	server_name nc.homelc0o0cl.ml;
 	
 	client_max_body_size 10G;
+	fastcgi_request_buffering off;
 	
 	location / {
 		#auth_basic "Auth required";
@@ -20,6 +21,7 @@ server {
 		proxy_connect_timeout 3600s;
 		proxy_send_timeout 3600s;
 		proxy_read_timeout 3600s;
+		#proxy_max_temp_file_size 2048m;
 	}
 
     #listen 80;

@@ -1,11 +1,9 @@
-version: '2'
-
-volumes:
-        app:
+version: '3'
 
 services:
         db:
                 image: jsurf/rpi-mariadb
+                command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
                 restart: always
                 volumes:
                         - /mnt/rachel/nextcloud/db:/var/lib/mysql
@@ -16,10 +14,15 @@ services:
                         - MYSQL_USER=nextcloud
         app:
                 image: nextcloud
+                restart: always
                 ports:
-                        - 8082:80
+                        - "127.0.0.1:8082:80"
                 volumes:
                         - /mnt/rachel/nextcloud/www:/var/www/html
                 environment:
-                        - NEXTCLOUD_TRUSTED_DOMAINS=nc.homelc0o0cl.ml
-                restart: always
+                        - MYSQL_DATABASE=nextcloud
+                        - MYSQL_USER=nextcloud
+                        - MYSQL_PASSWORD=nextcloud
+                        - MYSQL_HOST=db:3306
+                        - NEXTCLOUD_TRUSTED_DOMAINS=nc.homec0o0cl.ml
+

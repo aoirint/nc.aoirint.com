@@ -24,7 +24,7 @@ server {
 		#proxy_max_temp_file_size 2048m;
 	}
 
-    #listen 80;
+
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/nc.homelc0o0cl.ml/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/nc.homelc0o0cl.ml/privkey.pem; # managed by Certbot
@@ -40,8 +40,9 @@ server {
     } # managed by Certbot
 
 
-	listen 80;
 	server_name nc.homelc0o0cl.ml;
+
+    listen 80;
     return 404; # managed by Certbot
 
 

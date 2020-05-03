@@ -2,7 +2,8 @@ version: '3'
 
 services:
         db:
-                image: jsurf/rpi-mariadb
+                image: mariadb
+                #image: jsurf/rpi-mariadb
                 command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
                 restart: always
                 volumes:

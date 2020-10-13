@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
         db:
@@ -14,16 +14,22 @@ services:
                         - MYSQL_DATABASE=nextcloud
                         - MYSQL_USER=nextcloud
         app:
-                image: nextcloud
+                image: nextcloud:20
                 restart: always
                 ports:
                         - "127.0.0.1:8082:80"
                 volumes:
-                        - /mnt/rachel/nextcloud/www:/var/www/html
+                        # - /mnt/rachel/nextcloud/www:/var/www/html
+                        - /mnt/rachel/nextcloud/www/data:/var/www/html/data
+                        - /mnt/rachel/nextcloud/www/config:/var/www/html/config
+                        - /mnt/rachel/nextcloud/www/custom_apps:/var/www/html/custom_apps
+                        - /mnt/rachel/nextcloud/www/themes:/var/www/html/themes
                 environment:
                         - MYSQL_DATABASE=nextcloud
                         - MYSQL_USER=nextcloud
                         - MYSQL_PASSWORD=nextcloud
                         - MYSQL_HOST=db:3306
                         - NEXTCLOUD_TRUSTED_DOMAINS=nc.homec0o0cl.ml
+                depends_on:
+                        - db
 

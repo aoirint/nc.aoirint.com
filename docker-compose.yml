@@ -2,28 +2,28 @@ version: '3.8'
 
 services:
         db:
-                image: mariadb
+                image: mariadb:10.5
                 #image: jsurf/rpi-mariadb
                 command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --innodb_file_format=barracuda
                 restart: always
                 volumes:
-                        - /mnt/rachel/nextcloud/db:/var/lib/mysql
+                        - /mnt/rosetta/nextcloud/db:/var/lib/mysql
                 environment:
                         - MYSQL_ROOT_PASSWORD=root
                         - MYSQL_PASSWORD=nextcloud
                         - MYSQL_DATABASE=nextcloud
                         - MYSQL_USER=nextcloud
         app:
-                image: nextcloud:20
+                image: nextcloud:21
                 restart: always
                 ports:
                         - "127.0.0.1:8082:80"
                 volumes:
-                        # - /mnt/rachel/nextcloud/www:/var/www/html
-                        - /mnt/rachel/nextcloud/www/data:/var/www/html/data
-                        - /mnt/rachel/nextcloud/www/config:/var/www/html/config
-                        - /mnt/rachel/nextcloud/www/custom_apps:/var/www/html/custom_apps
-                        - /mnt/rachel/nextcloud/www/themes:/var/www/html/themes
+                        # - /mnt/rosetta/nextcloud/www:/var/www/html
+                        - /mnt/rosetta/nextcloud/www/data:/var/www/html/data
+                        - /mnt/rosetta/nextcloud/www/config:/var/www/html/config
+                        - /mnt/rosetta/nextcloud/www/custom_apps:/var/www/html/custom_apps
+                        - /mnt/rosetta/nextcloud/www/themes:/var/www/html/themes
                 environment:
                         - MYSQL_DATABASE=nextcloud
                         - MYSQL_USER=nextcloud

@@ -4,7 +4,7 @@ services:
         db:
                 image: mariadb:10.5
                 #image: jsurf/rpi-mariadb
-                command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --innodb_file_format=barracuda
+                command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
                 restart: always
                 volumes:
                         - /mnt/rosetta/nextcloud/db:/var/lib/mysql

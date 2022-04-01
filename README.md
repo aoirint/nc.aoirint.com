@@ -2,7 +2,7 @@
 
 ## .env
 ```env
-DB_ROOT=/mnt/akane/nextcloud/db
-WWW_ROOT=/mnt/akane/nextcloud/www
+DB_ROOT=/mnt/haruhi/nextcloud/db
+WWW_ROOT=/mnt/haruhi/nextcloud/www
 ```
 

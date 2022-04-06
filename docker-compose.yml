@@ -29,7 +29,7 @@ services:
                         - MYSQL_USER=nextcloud
                         - MYSQL_PASSWORD=nextcloud
                         - MYSQL_HOST=db:3306
-                        - NEXTCLOUD_TRUSTED_DOMAINS=nc.homec0o0cl.ml
+                        - NEXTCLOUD_TRUSTED_DOMAINS=nc.aoirint.com
                 depends_on:
                         - db
 

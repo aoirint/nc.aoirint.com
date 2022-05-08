@@ -5,6 +5,7 @@
 ```shell
 sudo docker-compose exec -u www-data app php occ db:add-missing-indices
 sudo docker-compose exec -u www-data app php occ maintenance:repair
+sudo docker-compose exec db mysql_upgrade -p
 ```
 
 ## .env

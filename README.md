@@ -4,6 +4,7 @@
 
 ```shell
 sudo docker-compose exec -u www-data app php occ db:add-missing-indices
+sudo docker-compose exec -u www-data app php occ maintenance:repair
 ```
 
 ## .env

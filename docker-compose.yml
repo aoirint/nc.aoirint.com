@@ -24,6 +24,7 @@ services:
                         - ${WWW_ROOT:-./data/www}/config:/var/www/html/config
                         - ${WWW_ROOT:-./data/www}/custom_apps:/var/www/html/custom_apps
                         - ${WWW_ROOT:-./data/www}/themes:/var/www/html/themes
+                        - ./php.ini:/usr/local/etc/php/php.ini
                 environment:
                         - MYSQL_DATABASE=nextcloud
                         - MYSQL_USER=nextcloud

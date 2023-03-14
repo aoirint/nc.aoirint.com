@@ -13,6 +13,8 @@ sudo docker compose exec -u www-data app php occ db:convert-filecache-bigint
 
 sudo docker compose exec -u www-data app php occ files:scan --all
 sudo docker compose exec -u www-data app php occ files:cleanup
+
+sudo docker compose exec -u www-data app php occ maintenance:update:htaccess
 ```
 
 ## .env

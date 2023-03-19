@@ -26,6 +26,7 @@ services:
                         - ${WWW_ROOT:-./volumes/nextcloud_www_data}/themes:/var/www/html/themes
                         - ./php.ini:/usr/local/etc/php/conf.d/additional_php.ini
                         - ${FILES_TSUMUGI_ROOT:-./volumes/nextcloud_files_tsumugi}:/files/tsumugi
+                        - ${FILES_IRIS_ROOT:-./volumes/nextcloud_files_iris}:/files/iris
                 environment:
                         - MYSQL_DATABASE=nextcloud
                         - MYSQL_USER=nextcloud

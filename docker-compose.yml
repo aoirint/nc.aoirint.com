@@ -1,38 +1,37 @@
 version: '3.8'
 
 services:
-        db:
-                image: mariadb:10.8
-                #image: jsurf/rpi-mariadb
-                command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
-                restart: always
-                volumes:
-                        - ${DB_ROOT:-./volumes/mysql_data}:/var/lib/mysql
-                environment:
-                        - MYSQL_ROOT_PASSWORD=root
-                        - MYSQL_PASSWORD=nextcloud
-                        - MYSQL_DATABASE=nextcloud
-                        - MYSQL_USER=nextcloud
-        app:
-                image: nextcloud:26
-                restart: always
-                ports:
-                        - "127.0.0.1:8082:80"
-                volumes:
-                        # - ./data/www:/var/www/html
-                        - ${WWW_ROOT:-./volumes/nextcloud_www_data}/data:/var/www/html/data
-                        - ${WWW_ROOT:-./volumes/nextcloud_www_data}/config:/var/www/html/config
-                        - ${WWW_ROOT:-./volumes/nextcloud_www_data}/custom_apps:/var/www/html/custom_apps
-                        - ${WWW_ROOT:-./volumes/nextcloud_www_data}/themes:/var/www/html/themes
-                        - ./php.ini:/usr/local/etc/php/conf.d/additional_php.ini
-                        - ${FILES_RIKKA_ROOT:-./volumes/nextcloud_files_rikka}:/files/rikka
-                        - ${FILES_IRIS_ROOT:-./volumes/nextcloud_files_iris}:/files/iris
-                environment:
-                        - MYSQL_DATABASE=nextcloud
-                        - MYSQL_USER=nextcloud
-                        - MYSQL_PASSWORD=nextcloud
-                        - MYSQL_HOST=db:3306
-                        - NEXTCLOUD_TRUSTED_DOMAINS=nc.aoirint.com
-                depends_on:
-                        - db
-
+  db:
+    image: mariadb:10.8
+    #image: jsurf/rpi-mariadb
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    restart: always
+    volumes:
+      - ${DB_ROOT:-./volumes/mysql_data}:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=nextcloud
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+  app:
+    image: nextcloud:26
+    restart: always
+    ports:
+      - "127.0.0.1:8082:80"
+    volumes:
+      # - ./data/www:/var/www/html
+      - ${WWW_ROOT:-./volumes/nextcloud_www_data}/data:/var/www/html/data
+      - ${WWW_ROOT:-./volumes/nextcloud_www_data}/config:/var/www/html/config
+      - ${WWW_ROOT:-./volumes/nextcloud_www_data}/custom_apps:/var/www/html/custom_apps
+      - ${WWW_ROOT:-./volumes/nextcloud_www_data}/themes:/var/www/html/themes
+      - ./php.ini:/usr/local/etc/php/conf.d/additional_php.ini
+      - ${FILES_RIKKA_ROOT:-./volumes/nextcloud_files_rikka}:/files/rikka
+      - ${FILES_IRIS_ROOT:-./volumes/nextcloud_files_iris}:/files/iris
+    environment:
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=nextcloud
+      - MYSQL_HOST=db:3306
+      - NEXTCLOUD_TRUSTED_DOMAINS=nc.aoirint.com
+    depends_on:
+      - db

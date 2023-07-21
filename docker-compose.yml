@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: mariadb:10.8
+    image: mariadb:10
     #image: jsurf/rpi-mariadb
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
     restart: always

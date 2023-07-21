@@ -14,6 +14,14 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
 
+  redis:
+    image: redis:7
+    restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+    volumes:
+      - ${REDIS_ROOT:-./volumes/redis_data}:/data
+
   app:
     image: nextcloud:27
     restart: always

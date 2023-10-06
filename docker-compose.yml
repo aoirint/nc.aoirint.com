@@ -42,6 +42,7 @@ services:
       - MYSQL_PASSWORD=nextcloud
       - MYSQL_HOST=db:3306
       - NEXTCLOUD_TRUSTED_DOMAINS=nc.aoirint.com
+      - APACHE_BODY_LIMIT=10737418240 # 10GiB
     depends_on:
       - db
 

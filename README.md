@@ -1,4 +1,8 @@
-# Nextcloud
+# nc.aoirint.com
+
+[nextcloud/server](https://github.com/nextcloud/server)の個人用インスタンス。
+
+## Maintenance
 
 - <https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/occ_command.html>
 

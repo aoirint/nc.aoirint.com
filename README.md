@@ -28,3 +28,15 @@ DB_ROOT=/mnt/haruhi/nextcloud/db
 WWW_ROOT=/mnt/haruhi/nextcloud/www
 ```
 
+## Apps
+
+### previewgenerator
+
+- GitHub: [nextcloud/previewgenerator](https://github.com/nextcloud/previewgenerator)
+
+```shell
+sudo docker compose exec -u www-data app php occ preview:generate-all
+
+# for cron job
+sudo docker compose exec -u www-data app php occ preview:pre-generate
+```

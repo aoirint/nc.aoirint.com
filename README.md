@@ -22,6 +22,20 @@ sudo docker compose exec -u www-data app php occ files:cleanup
 sudo docker compose exec -u www-data app php occ maintenance:update:htaccess
 ```
 
+### File lock status
+
+- <https://help.nextcloud.com/t/file-is-locked-how-to-unlock/1883>
+
+```shell
+sudo docker compose exec db mysql -p
+```
+
+```sql
+use nextcloud;
+
+SELECT COUNT(*) FROM oc_file_locks WHERE lock=1;
+```
+
 ## .env
 ```env
 DB_ROOT=/mnt/haruhi/nextcloud/db

@@ -57,6 +57,10 @@ services:
     volumes:
       - ./nginx_templates:/etc/nginx/templates
       - ${NGINX_LOG_DIR:?}:/logs
+    logging:
+      driver: fluentd
+      options:
+        tag: docker.nc_aoirint_com.nginx
     environment:
       - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.nginx
 

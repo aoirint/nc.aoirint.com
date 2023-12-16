@@ -60,7 +60,7 @@ services:
     logging:
       driver: fluentd
       options:
-        tag: docker.nc_aoirint_com.nginx
+        tag: docker.nc_aoirint_com.nginx.{{.ID}}
     environment:
       - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.nginx
 

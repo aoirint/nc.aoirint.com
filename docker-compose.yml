@@ -60,7 +60,7 @@ services:
     logging:
       driver: fluentd
       options:
-        tag: docker.main.nc_aoirint_com.nginx.{{.ID}}
+        tag: docker.nc_aoirint_com.nginx.{{.ID}}
         fluentd-async: "true"
     environment:
       - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.nginx

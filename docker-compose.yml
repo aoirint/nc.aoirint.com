@@ -61,6 +61,7 @@ services:
       driver: fluentd
       options:
         tag: docker.nc_aoirint_com.nginx.{{.ID}}
+        fluentd-async: "true"
     environment:
       - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.nginx
 

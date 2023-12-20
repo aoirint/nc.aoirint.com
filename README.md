@@ -7,19 +7,19 @@
 - <https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/occ_command.html>
 
 ```shell
-sudo docker compose exec -u www-data app php occ app:update --all
+sudo docker compose exec -u www-data nextcloud php occ app:update --all
 
-sudo docker compose exec -u www-data app php occ db:add-missing-indices
-sudo docker compose exec -u www-data app php occ maintenance:repair
+sudo docker compose exec -u www-data nextcloud php occ db:add-missing-indices
+sudo docker compose exec -u www-data nextcloud php occ maintenance:repair
 sudo docker compose exec db mysql_upgrade -p
 
-sudo docker compose exec -u www-data app php occ db:convert-filecache-bigint
+sudo docker compose exec -u www-data nextcloud php occ db:convert-filecache-bigint
 
-sudo docker compose exec -u www-data app php occ files:scan --all
-sudo docker compose exec -u www-data app php occ files:scan --path /myuser/files/path/to
-sudo docker compose exec -u www-data app php occ files:cleanup
+sudo docker compose exec -u www-data nextcloud php occ files:scan --all
+sudo docker compose exec -u www-data nextcloud php occ files:scan --path /myuser/files/path/to
+sudo docker compose exec -u www-data nextcloud php occ files:cleanup
 
-sudo docker compose exec -u www-data app php occ maintenance:update:htaccess
+sudo docker compose exec -u www-data nextcloud php occ maintenance:update:htaccess
 ```
 
 ### File lock status
@@ -49,8 +49,8 @@ WWW_ROOT=/mnt/haruhi/nextcloud/www
 - GitHub: [nextcloud/previewgenerator](https://github.com/nextcloud/previewgenerator)
 
 ```shell
-sudo docker compose exec -u www-data app php occ preview:generate-all
+sudo docker compose exec -u www-data nextcloud php occ preview:generate-all
 
 # for cron job
-sudo docker compose exec -u www-data app php occ preview:pre-generate
+sudo docker compose exec -u www-data nextcloud php occ preview:pre-generate
 ```

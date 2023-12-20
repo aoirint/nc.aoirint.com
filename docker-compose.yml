@@ -22,7 +22,7 @@ services:
     volumes:
       - ${REDIS_ROOT:-./volumes/redis_data}:/data
 
-  app:
+  nextcloud:
     image: nextcloud:27
     restart: always
     volumes:
@@ -46,24 +46,29 @@ services:
       - "minio.aoirint.com:${MINIO_AOIRINT_COM_IP_ADDRESS:?}"
     depends_on:
       - db
+    logging:
+      driver: fluentd
+      options:
+        tag: docker.nc_aoirint_com.nextcloud.{{.ID}}
+        fluentd-async: "true"
 
   nginx:
     image: nginx:latest
     restart: always
     depends_on:
-      - app
+      - nextcloud
     ports:
       - "127.0.0.1:8082:80"
     volumes:
       - ./nginx_templates:/etc/nginx/templates
       - ${NGINX_LOG_DIR:?}:/logs
+    environment:
+      - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.nginx
     logging:
       driver: fluentd
       options:
         tag: docker.nc_aoirint_com.nginx.{{.ID}}
         fluentd-async: "true"
-    environment:
-      - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.nginx
 
   cloudflared:
     image: cloudflare/cloudflared:latest

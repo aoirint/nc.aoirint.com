@@ -23,7 +23,7 @@ services:
       - ${REDIS_ROOT:-./volumes/redis_data}:/data
 
   nextcloud:
-    image: nextcloud:27
+    image: nextcloud:28
     restart: always
     volumes:
       # - ./data/www:/var/www/html

@@ -11,6 +11,11 @@ services:
       - MYSQL_PASSWORD=nextcloud
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
+    logging:
+      driver: fluentd
+      options:
+        tag: docker.nc_aoirint_com.db.{{.ID}}
+        fluentd-async: "true"
 
   redis:
     image: redis:7-alpine
@@ -19,6 +24,11 @@ services:
       test: ["CMD", "redis-cli", "ping"]
     volumes:
       - ${REDIS_ROOT:-./volumes/redis_data}:/data
+    logging:
+      driver: fluentd
+      options:
+        tag: docker.nc_aoirint_com.redis.{{.ID}}
+        fluentd-async: "true"
 
   nextcloud:
     image: nextcloud:28
@@ -76,3 +86,8 @@ services:
       - nginx
     environment:
       TUNNEL_TOKEN: ${CLOUDFLARED_TUNNEL_TOKEN:?}
+    logging:
+      driver: fluentd
+      options:
+        tag: docker.nc_aoirint_com.cloudflared.{{.ID}}
+        fluentd-async: "true"

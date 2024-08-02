@@ -31,7 +31,7 @@ services:
         fluentd-async: "true"
 
   nextcloud:
-    image: nextcloud:28
+    image: nextcloud:29
     restart: always
     volumes:
       # - ./data/www:/var/www/html
